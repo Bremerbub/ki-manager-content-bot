@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TikTok OAuth Callback</title>
+  <style>
+    body { font-family: system-ui; max-width: 640px; margin: 40px auto; padding: 20px; }
+    pre { background: #f4f4f4; padding: 16px; word-break: break-all; }
+  </style>
+</head>
+<body>
+  <h1>TikTok Authorization</h1>
+  <p id="msg">Loading…</p>
+  <pre id="code"></pre>
+  <script>
+    const p = new URLSearchParams(location.search);
+    const code = p.get('code');
+    const err = p.get('error');
+    const msg = document.getElementById('msg');
+    const pre = document.getElementById('code');
+    if (err) {
+      msg.textContent = 'Error: ' + err;
+    } else if (code) {
+      msg.textContent = 'Copy this code and exchange it for a token:';
+      pre.textContent = code;
+    } else {
+      msg.textContent = 'No code in URL.';
+    }
+  </script>
+</body>
+</html>
